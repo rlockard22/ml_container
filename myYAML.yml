@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: Ryan Lockard Oral Exam Yaml File
+  description: A service to predict death events from heart failure
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    name: Ryan Lockard
+    email: rtlockar@iu.edu
+  license:
+    name: Apache
+
+paths:
+  /predict/{features}:
+    get:
+      tags:
+        - Predict
+      operationId: prediction.predict
+      description: returns prediction from the model
+      parameters:
+        - in: path
+          name: features
+          required: true
+          schema:
+            type: array
+            items:
+              type: number
+            minItems: 1
+          style: simple
+          explode: true
+        - in: query
+          name: metadata
+          schema:
+            type: boolean
+          
+      responses:
+        '200':
+          description: 'patient prediction- Alive or Dead'
+          content:
+            application/json:
+              schema:
+                type: string
+        '405':
+          description: 'User Error! This function takes in 12 features'
+
+servers:
+  - url: 'http://localhost:8080/prediction'
