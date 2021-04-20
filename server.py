@@ -1,3 +1,4 @@
+from prediction import predict
 from flask import Flask
 from flask import jsonify
 import connexion
@@ -6,6 +7,8 @@ from joblib import load
 #load the model
 
 my_model = load('my_model.pkl')
+
+log_model = load('log_model.pkl')
 
 # Create the application instance
 app = connexion.App(__name__, specification_dir="./")
@@ -16,7 +19,13 @@ app.add_api("myYAML.yml")
 # create a URL route in our application for "/"
 @app.route("/")
 def home():
-    msg = {"msg": "It's working!"}
+    msg = {"Current Working Endpoints": "                                                                                                                                                                                               "
+     "Prediction:     " "/prediction/predict/{features (11)}"
+    "                                                                                                                                                                                                                                   "
+    "Statistics:     " "/prediction/stats" 
+    "                                                                                                                                                                                                                                   "
+    "Ryan Lockard E222 Final Project"}
+   
     return jsonify(msg)
 
 

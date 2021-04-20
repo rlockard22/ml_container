@@ -42,6 +42,25 @@ paths:
                 type: string
         '405':
           description: 'User Error! This function takes in 12 features'
+  /stats:
+    get:
+      tags:
+        - Stats
+      operationId: statistics.stats
+      description: returns model statistics 
+
+      responses:
+        '200':
+          description: 'Model Stats'
+          content:
+            application/json:
+              schema:
+                type: string
+        '405':
+          description: 'User Error!'
+
+    
+      
 
 servers:
   - url: 'http://localhost:8080/prediction'
